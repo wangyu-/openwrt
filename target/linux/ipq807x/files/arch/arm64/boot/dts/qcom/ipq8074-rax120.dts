@@ -828,75 +828,79 @@
 		nand-ecc-step-size = <512>;
 		nand-bus-width = <8>;
 		partition@0 {
-			label = "0:SBL1";
+			label = "0:sbl1";
 			reg = <0x00 0x100000>;
 		};
+		partition@100000 {
+			label = "0:mibib";
+			reg = <0x100000 0x100000>;
+		};
 		partition@200000 {
-			label = "0:BOOTCONFIG";
+			label = "0:bootconfig";
 			reg = <0x200000 0x80000>;
 		};
 		partition@280000 {
-			label = "0:BOOTCONFIG1";
+			label = "0:bootconfig_1";
 			reg = <0x280000 0x80000>;
 		};
 		partition@300000 {
-			label = "0:QSEE";
+			label = "0:qsee";
 			reg = <0x300000 0x300000>;
 		};
 		partition@600000 {
-			label = "0:QSEE_1";
+			label = "0:qsee_1";
 			reg = <0x600000 0x300000>;
 		};
 		partition@900000 {
-			label = "0:DEVCFG";
+			label = "0:devcfg";
 			reg = <0x900000 0x80000>;
 		};
 		partition@980000 {
-			label = "0:DEVCFG_1";
+			label = "0:devcfg_1";
 			reg = <0x980000 0x80000>;
 		};
 		partition@a00000 {
-			label = "0:APDP";
+			label = "0:apdp";
 			reg = <0xa00000 0x80000>;
 		};
 		partition@a80000 {
-			label = "0:APDP_1";
+			label = "0:apdp_1";
 			reg = <0xa80000 0x80000>;
 		};
 		partition@b00000 {
-			label = "0:RPM";
+			label = "0:rpm";
 			reg = <0xb00000 0x80000>;
 		};
 		partition@b80000 {
-			label = "0:RPM_1";
+			label = "0:rpm_1";
 			reg = <0xb80000 0x80000>;
 		};
 		partition@c00000 {
-			label = "0:CDT";
+			label = "0:cdt";
 			reg = <0xc00000 0x80000>;
 		};
 		partition@c80000 {
-			label = "0:CDT_1";
+			label = "0:cdt_1";
 			reg = <0xc80000 0x80000>;
 		};
 		partition@d00000 {
-			label = "0:APPSBLENV";
+			label = "0:appsblenv";
 			reg = <0xd00000 0x80000>;
 		};
 		partition@d80000 {
-			label = "0:APPSBL";
+			label = "0:appsbl";
 			reg = <0xd80000 0x100000>;
 		};
 		partition@e80000 {
-			label = "0:APPSBL_1";
+			label = "0:appsbl_1";
 			reg = <0xe80000 0x100000>;
 		};
 		partition@f80000 {
-			label = "0:ART";
+			label = "0:art";
 			reg = <0xf80000 0x80000>;
 		};
-		partition@100000 {
-			label = "0:ART.bak";
+		partition@1000000 {
+			label = "0:art.bak";
 			reg = <0x1000000 0x0080000>;
 		};
 		partition@1080000 {
