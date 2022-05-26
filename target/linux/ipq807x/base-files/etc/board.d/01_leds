@@ -21,6 +21,15 @@ qnap,301w)
 	ucidef_set_led_netdev "10G_1" "10G_1" "green:10g_1" "eth4"
 	ucidef_set_led_netdev "10G_2" "10G_2" "green:10g_2" "eth5"
 	;;
+netgear,rax120)
+	ucidef_set_led_default "power" "POWER" "white:power" "1"
+	ucidef_set_led_default "wps" "WPS" "white:wps" "1"
+	ucidef_set_led_netdev "wan" "WAN" "white:wan" "eth4"
+	ucidef_set_led_wlan "wlan2g" "WLAN2G" "white:wlan2g" "wlan1"
+	ucidef_set_led_wlan "wlan5g" "WLAN5G" "white:wlan5g" "wlan0"
+	ucidef_set_led_usbport "usb" "USB" "white:usb1" "usb2-port2" 
+	ucidef_set_led_usbport "usb" "USB" "white:usb2" "usb4-port2"
+	;;
 esac
 
 board_config_flush

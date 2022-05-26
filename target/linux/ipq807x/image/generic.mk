@@ -1,6 +1,6 @@
 define Device/FitImage
 	KERNEL_SUFFIX := -fit-uImage.itb
-	KERNEL = kernel-bin | gzip | fit gzip $$(DEVICE_DTS_DIR)/$$(DEVICE_DTS).dtb
+	KERNEL = kernel-bin | gzip | fit gzip $$(DEVICE_DTS_DIR)/$$(DEVICE_DTS).dtb 
 	KERNEL_NAME := Image
 endef
 
@@ -104,3 +104,21 @@ define Device/xiaomi_ax9000
 	DEVICE_PACKAGES := ipq-wifi-xiaomi_ax9000 kmod-ath10k-ct ath10k-firmware-qca9887-ct
 endef
 TARGET_DEVICES += xiaomi_ax9000
+
+define Device/netgear_rax120
+	$(call Device/FitImage)
+	DEVICE_VENDOR := Netgear
+	DEVICE_MODEL := RAX120	
+	BLOCKSIZE := 128k
+	DEVICE_DTS_CONFIG := config@hk01
+	SOC := ipq8074
+	KERNEL_SIZE := 29696k
+	KERNEL_LOADADDR := 0x40908000
+	NETGEAR_BOARD_ID := RAX120
+	NETGEAR_HW_ID="29765589+0+512+1024+4x4+8x8"
+	UBINIZE_OPTS := -E 5
+	IMAGES += dni.bin
+	IMAGE/dni.bin := append-kernel | pad-to $$$$(KERNEL_SIZE) | append-rootfs | pad-rootfs | netgear-dni
+	DEVICE_PACKAGES := ipq-wifi-netgear_rax120
+endef
+TARGET_DEVICES += netgear_rax120
