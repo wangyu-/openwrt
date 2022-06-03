@@ -20,7 +20,7 @@ echo ${KERNEL_SIZE}
 KERNEL_SIZE_NEW=`echo "(${KERNEL_SIZE}/1024/128+1)*1024*128-64"|bc`
 echo NEW_SIZE=${KERNEL_SIZE_NEW}
 dd if=/dev/zero of=kernel.itb.new bs=1 count=0 seek=${KERNEL_SIZE_NEW}
-cat kernel.itb.new root.squashfs.uImage > combined.img
+cat kernel.itb.new dummy.uImage > combined.img
 
 # pad the image to size of kernel partition
 # 30408704 is 0x1d00000, the kernel partition size
@@ -30,5 +30,5 @@ dd if=/dev/zero of=combined.img.new bs=1 count=0 seek=30408704
 # combine the real squashfs with kernel partition
 cat combined.img.new root.squashfs > combined_again.img
 rm ./final.img
-${STAGING_DIR_HOST}/bin/mkdniimg -B RAX120 -v V1.2.3.28 -r "" -H 29765589+0+512+1024+4x4+8x8  -i combined_again.img -o final.img
+${STAGING_DIR_HOST}/bin/mkdniimg -B RAX120 -v 1.2.3.28 -r "" -H 29765589+0+512+1024+4x4+8x8  -i combined_again.img -o final.img
 
