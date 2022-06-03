@@ -4,11 +4,11 @@ STAGING_DIR_HOST="../staging_dir/host/"
 KERNEL_IMG="openwrt-ipq807x-generic-netgear_rax120-squashfs-k.img"
 ROOTFS_IMG="root.squashfs"
 
-#copy root.squash and kernel to current dir
+# copy root.squashfs and kernel to current dir
 cp ../build_dir/target-aarch64_cortex-a53_musl/linux-ipq807x_generic/root.squashfs ./
 cp ${BIN_DIR}/${KERNEL_IMG} ./kernel.itb
 
-#generate a dummy squashfs with uimage header, to cheat the uboot
+# prepare a dummy uimage header with empty squashfs, to cheat the uboot
 mkdir -p ./dummy_squashfs_root
 mksquashfs dummy_squashfs_root  dummy.squashfs -comp xz -b 262144 -no-xattrs
 ${STAGING_DIR_HOST}/bin/mkimage -A arm64 -O linux -C lzma -T kernel -a 0x40908000 -e 0x40908000 -n 'Linux-5.15' -d ./dummy.squashfs ./dummy.uImage
@@ -20,6 +20,8 @@ echo ${KERNEL_SIZE}
 KERNEL_SIZE_NEW=`echo "(${KERNEL_SIZE}/1024/128+1)*1024*128-64"|bc`
 echo NEW_SIZE=${KERNEL_SIZE_NEW}
 dd if=/dev/zero of=kernel.itb.new bs=1 count=0 seek=${KERNEL_SIZE_NEW}
+
+# insert the dummy uimage header with empty squashfs
 cat kernel.itb.new dummy.uImage > combined.img
 
 # pad the image to size of kernel partition
