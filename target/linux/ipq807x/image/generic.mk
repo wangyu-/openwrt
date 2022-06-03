@@ -116,8 +116,9 @@ define Device/netgear_rax120
 	NETGEAR_BOARD_ID := RAX120
 	NETGEAR_HW_ID="29765589+0+512+1024+4x4+8x8"
 	UBINIZE_OPTS := -E 5
-	IMAGES += factory.bin sysupgrade.bin
+	IMAGES += factory.bin sysupgrade.bin k.img
 	IMAGE/factory.bin := append-kernel | pad-to $$$$(KERNEL_SIZE) | append-rootfs | pad-rootfs | netgear-dni
+	IMAGE/k.img := append-kernel
 	IMAGE/sysupgrade.bin/squashfs := append-rootfs | pad-rootfs | sysupgrade-tar rootfs=$$$$@ | append-metadata
 	DEVICE_PACKAGES := ipq-wifi-netgear_rax120 kmod-spi-gpio kmod-spi-bitbang
 endef
