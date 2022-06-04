@@ -1,0 +1,26 @@
+1st, run:
+
+./scripts/feeds update packages luci
+./scripts/feeds install -a -p luci
+
+./scripts/feeds update packages nss_packages
+./scripts/feeds install -a -p nss_packages
+
+
+2nd, run `make menconfig`, select:
+
+target-system ---> Qualcomm Atheros IPQ807X
+target-profile ---> Netgear Rax120
+firmware ---> aq-fw_download
+firmware ---> nss-firmware-ipq8074
+kernel-module ---> network-device ---> kmod-qca-nss-drv
+luci ---> collections ---> luci
+
+
+3rd, run `make -j`
+
+
+4th, goto `rax120_image_gen/`,  run `gen.sh`
+
+
+then final.img is the firmware, it can be flashed via web or tftp 
