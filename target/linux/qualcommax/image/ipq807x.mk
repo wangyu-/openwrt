@@ -106,8 +106,9 @@ define Device/netgear_rax120v2
 	DEVICE_PACKAGES := ipq-wifi-netgear_rax120v2 kmod-spi-gpio \
 		kmod-spi-bitbang kmod-gpio-nxp-74hc164 kmod-hwmon-g761
 	IMAGES = sysupgrade.bin factory_ramfs.img
-	IMAGE/factory_ramfs.img := append-image initramfs-uImage.itb | pad-offset $$$$(BLOCKSIZE) 64 | \
-		append-uImage-fakehdr filesystem | pad-to $$$$(KERNEL_SIZE) | netgear-dni
+	IMAGE/factory_ramfs.img := append-image initramfs-uImage.itb | \
+		pad-offset $$$$(BLOCKSIZE) 64 | append-uImage-fakehdr filesystem | \
+		netgear-dni
 	IMAGE/sysupgrade.bin := append-kernel | pad-offset $$$$(BLOCKSIZE) 64 | \
 		append-uImage-fakehdr filesystem | sysupgrade-tar kernel=$$$$@ | \
 		append-metadata
